@@ -11,3 +11,41 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('//anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "//anaconda3/etc/profile.d/conda.sh" ]; then
+        . "//anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="//anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# Aliases
+alias l='ls -lah'
+alias cat='bat'
+
+## from https://opensource.com/article/19/7/bash-aliases
+alias lt='du -sh * | sort -h'
+alias gh='history|rg'
+alias count='find . -type f | wc -l'
+#This one counts files, ignoring directories, but not the contents of directories. 
+
+alias tcn='mv --force -t ~/.Trash'
